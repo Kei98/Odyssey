@@ -1,7 +1,14 @@
 package com.AyJK.list;
 
-import com.AyJK.tree.BTreeNode;
-
+/**
+ * Clase en la que se crea una lista simplemente enlazada y sus métodos para
+ * agregar, eliminar, buscar, imprimir.
+ * 
+ * @author LKJ
+ *
+ * @param <T>:
+ *            Parámetro genérico de la lista.
+ */
 public class SimpleLL<T> {
 
     private Node<T> head;
@@ -16,10 +23,12 @@ public class SimpleLL<T> {
     }
 
     /**
-     * Método para agregar Nodo.
+     * Método para agregar un Nodo que recibe como parámetro el dato que desea
+     * agregar.
      * 
-     * @param data
-     * @return
+     * @param data:
+     *            dato que será agregado.
+     * @return true: el dato ha sido agregado correctamente.
      * 
      */
     public boolean add(T data) {
@@ -39,7 +48,7 @@ public class SimpleLL<T> {
     }
 
     /**
-     * Metodo para mostrar el o los nodos.
+     * Metodo que puede imprimir el o los nodos que han sido agregados en consola.
      * 
      */
     public void show() {
@@ -58,9 +67,10 @@ public class SimpleLL<T> {
     }
 
     /**
-     * Metodo para eliminar.
+     * Metodo para eliminar que recibe como parámetro el dato que se desea eliminar.
      * 
-     * @param erase
+     * @param erase:
+     *            dato a eliminar.
      */
     public void delete(T erase) {
 	if (head.getData() == erase) {
@@ -76,69 +86,63 @@ public class SimpleLL<T> {
 	    }
 	}
     }
-   
-    /*
-     * Método para 
-     */
 
-//    public T getData(int data) {
-//	Node<T> temp = this.getHead();
-//	int i = 0;
-//	while (i != data) {
-//	    temp = temp.getNext();
-//	    i++;
-//	}
-//	return temp.getData();
-//    }
-
-    public boolean isEmpty() {
-    	return false;
-    }
-    
-    /*
-     * Método para obtener el valor en la posición indicada
-     */
-    
-    public T getDatai(int index) {
-		Node<T> temp = this.getHead();
-    	while(index != 0) {
-			temp = temp.getNext();
-			index--;
-		}
-    	return temp.getData();
-    	
-    }
-    
-    
-    /*
-     * Método para insertar el valor en la posición indicada
-     */
-    public void setDatai(int index, T value) {
-    	Node<T> temp = this.getHead();
-    	while(index != 0) {
-    		temp = temp.getNext();
-    		index--;
-    	}
-    	temp.setData(value);
-    }
-    
-    /*
-     * Método para insertar un nodo en la posición indicada
-     */
-    
-    public void setDatai(int index, BTreeNode<T> node) {
-    	Node<T> temp = this.getHead();
-    	while(index != 0) {
-    		temp = temp.getNext();
-    		index--;
-    	}
-    	temp.setData((T) node);
-    }
-    
-    
+    // public T getData(int data) {
+    // Node<T> temp = this.getHead();
+    // int i = 0;
+    // while (i != data) {
+    // temp = temp.getNext();
+    // i++;
+    // }
+    // return temp.getData();
+    // }
 
     /**
-     * Metodo para limpiar la lista.
+     * Método que nos retorna un valor verdadero o falso si la lista está o no
+     * vacía.
+     * 
+     * @return
+     */
+    public boolean isEmpty() {
+	return false;
+    }
+
+    /**
+     * Método para obtener un dato en la posición deseada.
+     * 
+     * @param index:
+     *            posición en la que se encuentra el dato que se desea obtener.
+     * @return El dato deseado.
+     */
+    public T getDatai(int index) {
+	Node<T> temp = this.getHead();
+	while (index != 0) {
+	    temp = temp.getNext();
+	    index--;
+	}
+	return temp.getData();
+
+    }
+
+    /**
+     * Método para insertar un valor en la posición indicada.
+     * 
+     * @param index:
+     *            Posición en la cuál se desea ingresar el valor.
+     * @param value:
+     *            Valor que será agregado.
+     */
+    public void setDatai(int index, T value) {
+	Node<T> temp = this.getHead();
+	while (index != 0) {
+	    temp = temp.getNext();
+	    index--;
+	}
+	temp.setData(value);
+    }
+
+    /**
+     * Método para limpiar la lista.
      */
     public void clear() {
 	this.setHead(null);
@@ -147,13 +151,14 @@ public class SimpleLL<T> {
     }
 
     /**
-     * Metodo para eliminar por valor.
+     * Método para eliminar un dato ingresando la posición en la que se encuentra.
      * 
-     * @param i
+     * @param i:
+     *            Posición en la que se encuentra el dato a eliminar.
      */
     public void deleteValue(int i) {
 	if (this.isEmpty()) {
-	    System.out.println("");
+	    System.out.println("There is no data to erase.");
 	} else {
 	    Node<T> temp = this.head;
 	    if (i == 0) {
@@ -168,15 +173,15 @@ public class SimpleLL<T> {
 		temp.setNext(temp.getNext().getNext());
 		this.size--;
 	    } else {
-		System.out.println("");
+		System.out.println("The index was no found.");
 	    }
 	}
     }
 
     /**
-     * Get y Set
+     * Métodos get y set.
      * 
-     * @param head
+     * @param
      */
     public void setHead(Node<T> head) {
 	this.head = head;
