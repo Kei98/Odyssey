@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="src/jackson-annotations-2.9.5.jar"/>
+	<classpathentry kind="lib" path="src/jackson-core-2.9.5.jar"/>
+	<classpathentry kind="lib" path="src/jackson-databind-2.9.5.jar"/>
+	<classpathentry kind="lib" path="src/jackson-dataformat-xml-2.9.5.jar"/>
+	<classpathentry kind="lib" path="src/jackson-module-jaxb-annotations-2.9.5.jar"/>
+	<classpathentry kind="lib" path="src/stax2-api-4.1.jar"/>
+	<classpathentry kind="lib" path="src/woodstox-core-5.1.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="C:/Users/HP/Downloads/junit-jupiter-api-5.2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/HP/Downloads/junit-vintage-engine-5.2.0.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
