@@ -1,4 +1,4 @@
-package com.AyJK.Test;
+package com.AyJK.mapper;
 
 import java.io.File;
 import java.io.IOException;

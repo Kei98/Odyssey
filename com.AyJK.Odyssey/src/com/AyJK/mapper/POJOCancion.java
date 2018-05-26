@@ -1,4 +1,4 @@
-package com.AyJK.Test;
+package com.AyJK.mapper;
 
 public class POJOCancion {
 	 private String name;

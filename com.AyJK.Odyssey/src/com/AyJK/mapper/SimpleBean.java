@@ -1,4 +1,4 @@
-package com.AyJK.Test;
+package com.AyJK.mapper;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
