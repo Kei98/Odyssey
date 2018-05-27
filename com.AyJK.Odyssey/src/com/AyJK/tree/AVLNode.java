@@ -1,20 +1,46 @@
 package com.AyJK.tree;
 
-public class Node<T extends Comparable<T>> implements Comparable<Node<T>> {
+/**
+ * Clase en la que se crea el Nodo del árbol AVL.
+ * 
+ * @author LKJ
+ *
+ * @param <T>
+ */
+public class AVLNode<T extends Comparable<T>> implements Comparable<AVLNode<T>> {
 
+    /**
+     * Variables de la clase.
+     */
     private T data;
-    private Node<T> left;
-    private Node<T> right;
+    private AVLNode<T> left;
+    private AVLNode<T> right;
     public int level;
     private int depth;
 
-    public Node(T data) {
+    /**
+     * Constructor de la clase.
+     * 
+     * @param data:
+     *            dato que recibirá el nodo del árbol.
+     */
+    public AVLNode(T data) {
 	this(data, null, null);
     }
 
-    public Node(T data, Node<T> left, Node<T> right) {
+    /**
+     * Método que se encarga de agregar un nuevo nodo al árbol en conjunto con su
+     * dato y los nodos izquierdo y derecho que tendrá.
+     * 
+     * @param data:
+     *            dato a ingresar.
+     * @param left:
+     *            nodo derecho del nuevo nodo.
+     * @param right:
+     *            nodo izquierdo del nuevo nodo.
+     */
+    public AVLNode(T data, AVLNode<T> left, AVLNode<T> right) {
 	super();
-
 	this.data = data;
 	this.left = left;
 	this.right = right;
@@ -30,16 +56,27 @@ public class Node<T extends Comparable<T>> implements Comparable<Node<T>> {
 	}
     }
 
+    /**
+     * 
+     */
     @Override
-    public int compareTo(Node<T> o) {
+    public int compareTo(AVLNode<T> o) {
 	return 0;
     }
 
+    /**
+     * 
+     */
     @Override
     public String toString() {
 	return "Level " + level + ": " + data;
     }
 
+    /**
+     * Getters y Setters de la clase.
+     * 
+     * @return
+     */
     public T getData() {
 	return data;
     }
@@ -48,19 +85,19 @@ public class Node<T extends Comparable<T>> implements Comparable<Node<T>> {
 	this.data = data;
     }
 
-    public Node<T> getLeft() {
+    public AVLNode<T> getLeft() {
 	return left;
     }
 
-    public void setLeft(Node<T> left) {
+    public void setLeft(AVLNode<T> left) {
 	this.left = left;
     }
 
-    public Node<T> getRight() {
+    public AVLNode<T> getRight() {
 	return right;
     }
 
-    public void setRight(Node<T> right) {
+    public void setRight(AVLNode<T> right) {
 	this.right = right;
     }
 
