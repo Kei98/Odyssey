@@ -41,6 +41,7 @@ public class Mp3Mapper {
 			String encode = Base64.getEncoder().encodeToString(bytesArray);
 			System.out.println(encode);
            //System.out.println(encode);
+			play(encode);
             
 
 
@@ -53,7 +54,7 @@ public class Mp3Mapper {
     }
 	
 	
-	public static void play() {
+	public static void play(String song) {
 		
 	}
 
