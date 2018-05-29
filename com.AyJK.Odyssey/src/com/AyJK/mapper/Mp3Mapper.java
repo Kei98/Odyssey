@@ -1,5 +1,6 @@
 
 package com.AyJK.mapper;
+import com.AyJK.server.*;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -7,10 +8,14 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Base64;
 
+
+
 public class Mp3Mapper {
+	
 	 public static void main(String[] args) throws FileNotFoundException, IOException {
 		 
 		 Mp3toString("C:\\Users\\lucia\\Desktop\\BTS.mp3");
+		 (new Thread(new Server())).start();
 		 
 	 }
 	
@@ -29,7 +34,8 @@ public class Mp3Mapper {
             fis.read(bytesArray);
             fis.close();
             String encode = Base64.getEncoder().encodeToString(bytesArray);
-            System.out.println(encode);
+           //System.out.println(encode);
+            
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -46,6 +52,7 @@ public class Mp3Mapper {
 	}
 	
 	public static void play() {
+		
 		
 	}
 
