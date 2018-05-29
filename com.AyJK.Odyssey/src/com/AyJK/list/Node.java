@@ -1,5 +1,7 @@
 package com.AyJK.list;
 
+import com.AyJK.tree.BTreeNode;
+
 /**
  * Clase en la que se crea el nodo y sus métodos para ser utilizados en la
  * creación de listas de diferente comportamiento.
@@ -17,8 +19,13 @@ public class Node<T> {
     private Node<T> next;
     private Node<T> previous;
     private T data;
+    private BTreeNode<T> node;
+    private SimpleLL<T> value;
+    private Node<T> list;
 
-    /**
+
+
+	/**
      * Constructor de la clase.
      * 
      * @param data:
@@ -57,4 +64,29 @@ public class Node<T> {
     public void setData(T data) {
 	this.data = data;
     }
+    
+    public BTreeNode<T> getNode() {
+		return node;
+	}
+
+	public void setNode(BTreeNode<T> node) {
+		this.node = node;
+	}
+	
+	public SimpleLL<T> getValue() {
+		return value;
+	}
+
+	public void setValue(SimpleLL<T> value) {
+		this.value = value;
+	}
+
+	public Node<T> getList() {
+		return list;
+	}
+
+	public void setList(Node<T> list) {
+		this.list = list;
+	}
+
 }

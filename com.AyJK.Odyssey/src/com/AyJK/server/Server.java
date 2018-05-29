@@ -1,4 +1,4 @@
-package com.AyJK.Server;
+package com.AyJK.server;
 
 import java.io.BufferedReader;
 import java.io.IOException;

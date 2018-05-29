@@ -1,5 +1,7 @@
 package com.AyJK.list;
 
+import com.AyJK.tree.BTreeNode;
+
 /**
  * Clase en la que se crea una lista simplemente enlazada y sus métodos para
  * agregar, eliminar, buscar, imprimir.
@@ -13,6 +15,8 @@ public class SimpleLL<T> {
 
     private Node<T> head;
     private int size;
+    private int size2;
+    private int count = 0;
 
     /**
      * Constructor de la clase.
@@ -21,6 +25,11 @@ public class SimpleLL<T> {
 	head = null;
 	size = 0;
     }
+    
+    public SimpleLL(int size) {
+    	this.size = size;
+    	size2 = 0;
+        }
 
     /**
      * Método para agregar un Nodo que recibe como parámetro el dato que desea
@@ -32,19 +41,35 @@ public class SimpleLL<T> {
      * 
      */
     public boolean add(T data) {
-	Node<T> node = new Node<T>(data);
-	if (size == 0) {
-	    head = node;
-	    size++;
-	} else {
-	    Node<T> temp = head;
-	    while (temp.getNext() != null) {
-		temp = temp.getNext();
-	    }
-	    temp.setNext(node);
-	    size++;
-	}
-	return true;
+    	if (this.size != 0 && count == 0) {
+    		Node<T> node = new Node<T>(data);
+    		if (size2 == 0) {
+    			head = node;
+    			size2++;
+    		} else if (size2 < this.size) {
+    			Node<T> temp = head;
+    			while (temp.getNext() != null) {
+    				temp = temp.getNext();
+    			}
+    			temp.setNext(node);
+    			size2++;
+    		}
+    	} else {
+    		count++;
+    		Node<T> node = new Node<T>(data);
+    		if (size == 0) {
+    			head = node;
+    			size++;
+    		} else {
+    			Node<T> temp = head;
+    			while (temp.getNext() != null) {
+    				temp = temp.getNext();
+    			}
+    			temp.setNext(node);
+    			size++;
+    		}
+    	}
+    	return true;
     }
 
     /**
@@ -104,7 +129,7 @@ public class SimpleLL<T> {
      * @return
      */
     public boolean isEmpty() {
-	return false;
+    	return false;
     }
 
     /**
@@ -123,6 +148,17 @@ public class SimpleLL<T> {
 	return temp.getData();
 
     }
+    
+    public BTreeNode<T> getDataiN(int index) {
+    	Node<T> temp = this.getHead();
+    	while (index != 0) {
+    	    temp = temp.getNext();
+    	    index--;
+    	}
+    	return ((Node<T>) temp).getNode();
+
+		
+	}
 
     /**
      * Método para insertar un valor en la posición indicada.
@@ -140,6 +176,24 @@ public class SimpleLL<T> {
 	}
 	temp.setData(value);
     }
+    
+    public void setDatai(int index, BTreeNode<T> value) {
+    	Node<T> temp = this.getHead();
+    	while (index != 0) {
+    	    temp = temp.getNext();
+    	    index--;
+    	}
+    	temp.setNode(value);
+        }
+    
+    public Node<T> getDataa(int index) {
+    	Node<T> temp = this.getHead();
+    	while (index != 0) {
+    	    temp = temp.getNext();
+    	    index--;
+    	}
+    	return temp.getList();
+        }
 
     /**
      * Método para limpiar la lista.
@@ -198,4 +252,6 @@ public class SimpleLL<T> {
     public Node<T> getHead() {
 	return head;
     }
+
+	
 }
