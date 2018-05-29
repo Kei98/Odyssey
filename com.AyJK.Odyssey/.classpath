@@ -10,7 +10,8 @@
 	<classpathentry kind="lib" path="src/stax2-api-4.1.jar"/>
 	<classpathentry kind="lib" path="src/woodstox-core-5.1.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="C:/Users/HP/Downloads/junit-jupiter-api-5.2.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/HP/Downloads/junit-vintage-engine-5.2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/lucia/Downloads/junit-jupiter-api-5.2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/lucia/Downloads/junit-jupiter-engine-5.0.0-M1 (1).jar"/>
+	<classpathentry kind="lib" path="C:/Users/lucia/Downloads/junit-jupiter-engine-5.0.0-M1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
