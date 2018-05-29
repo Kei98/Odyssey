@@ -6,17 +6,21 @@ import java.io.InputStreamReader;
 
 import java.net.ServerSocket;
 import java.net.Socket;
-
+/**
+ * 
+ * @author AyJK
+ * Servidor, crea un socket para recibir al cliente
+ *
+ */
 public class Server implements Runnable {
 	
 	
 	@Override
 	public void run() {
 		try {
-			//se un socket para recibir al cliente 
+			
 			@SuppressWarnings("resource")
-
-			ServerSocket server = new ServerSocket(23000);
+			ServerSocket server = new ServerSocket(12000);
 			while(true) {
 				System.out.println("Esperando....");
 				Socket socket= server.accept();
