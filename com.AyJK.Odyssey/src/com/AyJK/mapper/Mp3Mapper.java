@@ -1,15 +1,17 @@
 
 package com.AyJK.mapper;
+import com.AyJK.server.*;
 
 
 import java.io.FileInputStream;
 import java.util.Base64;
 
-import com.AyJK.server.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
+
 
 
 
@@ -38,6 +40,9 @@ public class Mp3Mapper {
 			fis.close();
 			String encode = Base64.getEncoder().encodeToString(bytesArray);
 			System.out.println(encode);
+           //System.out.println(encode);
+            
+
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -45,13 +50,15 @@ public class Mp3Mapper {
 
 		return bytesArray;
 
+    }
+	
+	
+	public static void play() {
+		
 	}
 
+}
 
-	public static void StringtoMp3(String mp3) throws IOException {	
-
-
-	}
 //	 public static void main(String[] args) {
 //		 try{
 //
@@ -74,7 +81,7 @@ public class Mp3Mapper {
 //		 } catch (BasicPlayerException | MalformedURLException e) {
 //		     e.printStackTrace();
 //		 }
-	 }
+	 
 	 
 //	 public static void testPlay(String mp3) {
 //		    try {

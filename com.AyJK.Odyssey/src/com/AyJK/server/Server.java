@@ -9,11 +9,13 @@ import java.net.Socket;
 
 public class Server implements Runnable {
 	
+	
 	@Override
 	public void run() {
 		try {
 			//se un socket para recibir al cliente 
 			@SuppressWarnings("resource")
+
 			ServerSocket server = new ServerSocket(23000);
 			while(true) {
 				System.out.println("Esperando....");
