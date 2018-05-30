@@ -32,17 +32,19 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SignUp));
             this.bunifuImageButton1 = new Bunifu.Framework.UI.BunifuImageButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.userNameInfo = new Bunifu.Framework.UI.BunifuMaterialTextbox();
+            this.nameInfo = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.userEmailInfo = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.userPasswordInfo = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.signUpButton = new Bunifu.Framework.UI.BunifuThinButton2();
             this.logInButton = new Bunifu.Framework.UI.BunifuThinButton2();
             this.bunifuCustomLabel1 = new Bunifu.Framework.UI.BunifuCustomLabel();
-            this.bunifuCustomLabel2 = new Bunifu.Framework.UI.BunifuCustomLabel();
+            this.ageUserInfo = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.bunifuCustomLabel3 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.bunifuCustomLabel4 = new Bunifu.Framework.UI.BunifuCustomLabel();
-            this.bunifuMaterialTextbox1 = new Bunifu.Framework.UI.BunifuMaterialTextbox();
+            this.userPasswordInfoEvaluation = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
+            this.userNameInfoUser = new Bunifu.Framework.UI.BunifuCustomLabel();
+            this.userNameInfo = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             ((System.ComponentModel.ISupportInitialize)(this.bunifuImageButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -63,35 +65,36 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(109, 59);
+            this.pictureBox1.Location = new System.Drawing.Point(109, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(276, 212);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
-            // userNameInfo
+            // nameInfo
             // 
-            this.userNameInfo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.userNameInfo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
-            this.userNameInfo.characterCasing = System.Windows.Forms.CharacterCasing.Normal;
-            this.userNameInfo.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.userNameInfo.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-            this.userNameInfo.ForeColor = System.Drawing.Color.White;
-            this.userNameInfo.HintForeColor = System.Drawing.Color.White;
-            this.userNameInfo.HintText = "";
-            this.userNameInfo.isPassword = false;
-            this.userNameInfo.LineFocusedColor = System.Drawing.Color.Aqua;
-            this.userNameInfo.LineIdleColor = System.Drawing.Color.SpringGreen;
-            this.userNameInfo.LineMouseHoverColor = System.Drawing.Color.Teal;
-            this.userNameInfo.LineThickness = 3;
-            this.userNameInfo.Location = new System.Drawing.Point(45, 358);
-            this.userNameInfo.Margin = new System.Windows.Forms.Padding(4);
-            this.userNameInfo.MaxLength = 32767;
-            this.userNameInfo.Name = "userNameInfo";
-            this.userNameInfo.Size = new System.Drawing.Size(408, 40);
-            this.userNameInfo.TabIndex = 2;
-            this.userNameInfo.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.nameInfo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.nameInfo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            this.nameInfo.characterCasing = System.Windows.Forms.CharacterCasing.Normal;
+            this.nameInfo.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.nameInfo.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.nameInfo.ForeColor = System.Drawing.Color.White;
+            this.nameInfo.HintForeColor = System.Drawing.Color.White;
+            this.nameInfo.HintText = "";
+            this.nameInfo.isPassword = false;
+            this.nameInfo.LineFocusedColor = System.Drawing.Color.Aqua;
+            this.nameInfo.LineIdleColor = System.Drawing.Color.SpringGreen;
+            this.nameInfo.LineMouseHoverColor = System.Drawing.Color.Teal;
+            this.nameInfo.LineThickness = 3;
+            this.nameInfo.Location = new System.Drawing.Point(45, 263);
+            this.nameInfo.Margin = new System.Windows.Forms.Padding(4);
+            this.nameInfo.MaxLength = 32767;
+            this.nameInfo.Name = "nameInfo";
+            this.nameInfo.Size = new System.Drawing.Size(408, 40);
+            this.nameInfo.TabIndex = 2;
+            this.nameInfo.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.nameInfo.OnValueChanged += new System.EventHandler(this.nameInfo_OnValueChanged);
             // 
             // userEmailInfo
             // 
@@ -108,13 +111,14 @@
             this.userEmailInfo.LineIdleColor = System.Drawing.Color.SpringGreen;
             this.userEmailInfo.LineMouseHoverColor = System.Drawing.Color.Teal;
             this.userEmailInfo.LineThickness = 3;
-            this.userEmailInfo.Location = new System.Drawing.Point(45, 444);
+            this.userEmailInfo.Location = new System.Drawing.Point(45, 334);
             this.userEmailInfo.Margin = new System.Windows.Forms.Padding(4);
             this.userEmailInfo.MaxLength = 32767;
             this.userEmailInfo.Name = "userEmailInfo";
             this.userEmailInfo.Size = new System.Drawing.Size(408, 40);
             this.userEmailInfo.TabIndex = 3;
             this.userEmailInfo.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.userEmailInfo.OnValueChanged += new System.EventHandler(this.userEmailInfo_OnValueChanged);
             // 
             // userPasswordInfo
             // 
@@ -131,13 +135,14 @@
             this.userPasswordInfo.LineIdleColor = System.Drawing.Color.SpringGreen;
             this.userPasswordInfo.LineMouseHoverColor = System.Drawing.Color.Teal;
             this.userPasswordInfo.LineThickness = 3;
-            this.userPasswordInfo.Location = new System.Drawing.Point(45, 529);
+            this.userPasswordInfo.Location = new System.Drawing.Point(46, 405);
             this.userPasswordInfo.Margin = new System.Windows.Forms.Padding(4);
             this.userPasswordInfo.MaxLength = 32767;
             this.userPasswordInfo.Name = "userPasswordInfo";
             this.userPasswordInfo.Size = new System.Drawing.Size(408, 40);
             this.userPasswordInfo.TabIndex = 4;
             this.userPasswordInfo.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.userPasswordInfo.OnValueChanged += new System.EventHandler(this.userPasswordInfo_OnValueChanged);
             // 
             // signUpButton
             // 
@@ -163,6 +168,7 @@
             this.signUpButton.Size = new System.Drawing.Size(181, 41);
             this.signUpButton.TabIndex = 5;
             this.signUpButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.signUpButton.Click += new System.EventHandler(this.signUpButton_Click);
             // 
             // logInButton
             // 
@@ -194,27 +200,28 @@
             // 
             this.bunifuCustomLabel1.AutoSize = true;
             this.bunifuCustomLabel1.Font = new System.Drawing.Font("LetterOMatic!", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuCustomLabel1.Location = new System.Drawing.Point(41, 331);
+            this.bunifuCustomLabel1.Location = new System.Drawing.Point(42, 236);
             this.bunifuCustomLabel1.Name = "bunifuCustomLabel1";
             this.bunifuCustomLabel1.Size = new System.Drawing.Size(136, 23);
             this.bunifuCustomLabel1.TabIndex = 7;
             this.bunifuCustomLabel1.Text = "Full Name";
             // 
-            // bunifuCustomLabel2
+            // ageUserInfo
             // 
-            this.bunifuCustomLabel2.AutoSize = true;
-            this.bunifuCustomLabel2.Font = new System.Drawing.Font("LetterOMatic!", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuCustomLabel2.Location = new System.Drawing.Point(42, 417);
-            this.bunifuCustomLabel2.Name = "bunifuCustomLabel2";
-            this.bunifuCustomLabel2.Size = new System.Drawing.Size(73, 23);
-            this.bunifuCustomLabel2.TabIndex = 8;
-            this.bunifuCustomLabel2.Text = "Email";
+            this.ageUserInfo.AutoSize = true;
+            this.ageUserInfo.Font = new System.Drawing.Font("LetterOMatic!", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ageUserInfo.Location = new System.Drawing.Point(42, 307);
+            this.ageUserInfo.Name = "ageUserInfo";
+            this.ageUserInfo.Size = new System.Drawing.Size(54, 23);
+            this.ageUserInfo.TabIndex = 8;
+            this.ageUserInfo.Text = "Age";
+            this.ageUserInfo.Click += new System.EventHandler(this.bunifuCustomLabel2_Click);
             // 
             // bunifuCustomLabel3
             // 
             this.bunifuCustomLabel3.AutoSize = true;
             this.bunifuCustomLabel3.Font = new System.Drawing.Font("LetterOMatic!", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuCustomLabel3.Location = new System.Drawing.Point(41, 502);
+            this.bunifuCustomLabel3.Location = new System.Drawing.Point(41, 378);
             this.bunifuCustomLabel3.Name = "bunifuCustomLabel3";
             this.bunifuCustomLabel3.Size = new System.Drawing.Size(131, 23);
             this.bunifuCustomLabel3.TabIndex = 9;
@@ -224,34 +231,35 @@
             // 
             this.bunifuCustomLabel4.AutoSize = true;
             this.bunifuCustomLabel4.Font = new System.Drawing.Font("LetterOMatic!", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuCustomLabel4.Location = new System.Drawing.Point(46, 584);
+            this.bunifuCustomLabel4.Location = new System.Drawing.Point(42, 449);
             this.bunifuCustomLabel4.Name = "bunifuCustomLabel4";
             this.bunifuCustomLabel4.Size = new System.Drawing.Size(270, 23);
             this.bunifuCustomLabel4.TabIndex = 10;
             this.bunifuCustomLabel4.Text = "Reenter - Password";
             // 
-            // bunifuMaterialTextbox1
+            // userPasswordInfoEvaluation
             // 
-            this.bunifuMaterialTextbox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.bunifuMaterialTextbox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
-            this.bunifuMaterialTextbox1.characterCasing = System.Windows.Forms.CharacterCasing.Normal;
-            this.bunifuMaterialTextbox1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.bunifuMaterialTextbox1.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-            this.bunifuMaterialTextbox1.ForeColor = System.Drawing.Color.White;
-            this.bunifuMaterialTextbox1.HintForeColor = System.Drawing.Color.White;
-            this.bunifuMaterialTextbox1.HintText = "";
-            this.bunifuMaterialTextbox1.isPassword = true;
-            this.bunifuMaterialTextbox1.LineFocusedColor = System.Drawing.Color.Aqua;
-            this.bunifuMaterialTextbox1.LineIdleColor = System.Drawing.Color.SpringGreen;
-            this.bunifuMaterialTextbox1.LineMouseHoverColor = System.Drawing.Color.Teal;
-            this.bunifuMaterialTextbox1.LineThickness = 3;
-            this.bunifuMaterialTextbox1.Location = new System.Drawing.Point(45, 611);
-            this.bunifuMaterialTextbox1.Margin = new System.Windows.Forms.Padding(4);
-            this.bunifuMaterialTextbox1.MaxLength = 32767;
-            this.bunifuMaterialTextbox1.Name = "bunifuMaterialTextbox1";
-            this.bunifuMaterialTextbox1.Size = new System.Drawing.Size(408, 40);
-            this.bunifuMaterialTextbox1.TabIndex = 11;
-            this.bunifuMaterialTextbox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.userPasswordInfoEvaluation.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.userPasswordInfoEvaluation.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            this.userPasswordInfoEvaluation.characterCasing = System.Windows.Forms.CharacterCasing.Normal;
+            this.userPasswordInfoEvaluation.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.userPasswordInfoEvaluation.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.userPasswordInfoEvaluation.ForeColor = System.Drawing.Color.White;
+            this.userPasswordInfoEvaluation.HintForeColor = System.Drawing.Color.White;
+            this.userPasswordInfoEvaluation.HintText = "";
+            this.userPasswordInfoEvaluation.isPassword = true;
+            this.userPasswordInfoEvaluation.LineFocusedColor = System.Drawing.Color.Aqua;
+            this.userPasswordInfoEvaluation.LineIdleColor = System.Drawing.Color.SpringGreen;
+            this.userPasswordInfoEvaluation.LineMouseHoverColor = System.Drawing.Color.Teal;
+            this.userPasswordInfoEvaluation.LineThickness = 3;
+            this.userPasswordInfoEvaluation.Location = new System.Drawing.Point(46, 476);
+            this.userPasswordInfoEvaluation.Margin = new System.Windows.Forms.Padding(4);
+            this.userPasswordInfoEvaluation.MaxLength = 32767;
+            this.userPasswordInfoEvaluation.Name = "userPasswordInfoEvaluation";
+            this.userPasswordInfoEvaluation.Size = new System.Drawing.Size(408, 40);
+            this.userPasswordInfoEvaluation.TabIndex = 11;
+            this.userPasswordInfoEvaluation.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.userPasswordInfoEvaluation.OnValueChanged += new System.EventHandler(this.userPasswordInfoEvaluation_OnValueChanged);
             // 
             // bunifuDragControl1
             // 
@@ -260,6 +268,40 @@
             this.bunifuDragControl1.TargetControl = this;
             this.bunifuDragControl1.Vertical = true;
             // 
+            // userNameInfoUser
+            // 
+            this.userNameInfoUser.AutoSize = true;
+            this.userNameInfoUser.Font = new System.Drawing.Font("LetterOMatic!", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.userNameInfoUser.Location = new System.Drawing.Point(42, 520);
+            this.userNameInfoUser.Name = "userNameInfoUser";
+            this.userNameInfoUser.Size = new System.Drawing.Size(142, 23);
+            this.userNameInfoUser.TabIndex = 12;
+            this.userNameInfoUser.Text = "User Name";
+            // 
+            // userNameInfo
+            // 
+            this.userNameInfo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.userNameInfo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            this.userNameInfo.characterCasing = System.Windows.Forms.CharacterCasing.Normal;
+            this.userNameInfo.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.userNameInfo.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.userNameInfo.ForeColor = System.Drawing.Color.White;
+            this.userNameInfo.HintForeColor = System.Drawing.Color.White;
+            this.userNameInfo.HintText = "";
+            this.userNameInfo.isPassword = false;
+            this.userNameInfo.LineFocusedColor = System.Drawing.Color.Aqua;
+            this.userNameInfo.LineIdleColor = System.Drawing.Color.SpringGreen;
+            this.userNameInfo.LineMouseHoverColor = System.Drawing.Color.Teal;
+            this.userNameInfo.LineThickness = 3;
+            this.userNameInfo.Location = new System.Drawing.Point(46, 547);
+            this.userNameInfo.Margin = new System.Windows.Forms.Padding(4);
+            this.userNameInfo.MaxLength = 32767;
+            this.userNameInfo.Name = "userNameInfo";
+            this.userNameInfo.Size = new System.Drawing.Size(408, 40);
+            this.userNameInfo.TabIndex = 13;
+            this.userNameInfo.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.userNameInfo.OnValueChanged += new System.EventHandler(this.userNameInfo_OnValueChanged);
+            // 
             // SignUp
             // 
             this.AllowDrop = true;
@@ -267,16 +309,18 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Teal;
             this.ClientSize = new System.Drawing.Size(496, 775);
-            this.Controls.Add(this.bunifuMaterialTextbox1);
+            this.Controls.Add(this.userNameInfo);
+            this.Controls.Add(this.userNameInfoUser);
+            this.Controls.Add(this.userPasswordInfoEvaluation);
             this.Controls.Add(this.bunifuCustomLabel4);
             this.Controls.Add(this.bunifuCustomLabel3);
-            this.Controls.Add(this.bunifuCustomLabel2);
+            this.Controls.Add(this.ageUserInfo);
             this.Controls.Add(this.bunifuCustomLabel1);
             this.Controls.Add(this.logInButton);
             this.Controls.Add(this.signUpButton);
             this.Controls.Add(this.userPasswordInfo);
             this.Controls.Add(this.userEmailInfo);
-            this.Controls.Add(this.userNameInfo);
+            this.Controls.Add(this.nameInfo);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.bunifuImageButton1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -294,16 +338,18 @@
 
         private Bunifu.Framework.UI.BunifuImageButton bunifuImageButton1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private Bunifu.Framework.UI.BunifuMaterialTextbox userNameInfo;
+        private Bunifu.Framework.UI.BunifuMaterialTextbox nameInfo;
         private Bunifu.Framework.UI.BunifuMaterialTextbox userEmailInfo;
         private Bunifu.Framework.UI.BunifuMaterialTextbox userPasswordInfo;
         private Bunifu.Framework.UI.BunifuThinButton2 signUpButton;
         private Bunifu.Framework.UI.BunifuThinButton2 logInButton;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel1;
-        private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel2;
+        private Bunifu.Framework.UI.BunifuCustomLabel ageUserInfo;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel3;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel4;
-        private Bunifu.Framework.UI.BunifuMaterialTextbox bunifuMaterialTextbox1;
+        private Bunifu.Framework.UI.BunifuMaterialTextbox userPasswordInfoEvaluation;
         private Bunifu.Framework.UI.BunifuDragControl bunifuDragControl1;
+        private Bunifu.Framework.UI.BunifuMaterialTextbox userNameInfo;
+        private Bunifu.Framework.UI.BunifuCustomLabel userNameInfoUser;
     }
 }
