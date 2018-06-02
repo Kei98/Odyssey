@@ -75,15 +75,6 @@ public class SimpleLL<T> {
     	return true;
     }
     
-	public static void main(String[] args) {
-    	SimpleLL<String> list = new SimpleLL<String>(4);
-    	list.add("t");
-    	list.add("e");
-    	list.add("q");
-    	list.add("m");
-    	list.add("atar");
-    	list.show();
-    }
 
     /**
      * Metodo que puede imprimir el o los nodos que han sido agregados en consola.
