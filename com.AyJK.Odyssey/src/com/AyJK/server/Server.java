@@ -34,5 +34,19 @@ public class Server implements Runnable {
 			e.printStackTrace();
 		}
 	}
+	
+	public void send() {
+		try {
+			@SuppressWarnings({ "unused", "resource" })
+			ServerSocket server = new ServerSocket(13000);
+			while(true) {
+				
+			}
+		}catch(IOException e){
+			
+		}
+	}
+	
+	
 }
 

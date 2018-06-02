@@ -1,14 +1,15 @@
 package com.AyJK.tree;
 
-import com.AyJK.list.SimpleLL;
+//import com.AyJK.list.SimpleLL;
 
 public class BTreeNode<T> {
 	static int t_order; 
 
 	int count; 
-	SimpleLL<T> key;  
+	
+	String key[];  
 
-	SimpleLL<T> child; 
+	BTreeNode<T> child[]; 
 
 	boolean leaf; 
 
@@ -20,30 +21,32 @@ public class BTreeNode<T> {
 	{}
 
 
+	@SuppressWarnings({ "unchecked", "static-access" })
 	public BTreeNode(int t, BTreeNode<T> parent)
 	{
-		BTreeNode.t_order = t;  
+		this.t_order = t;
+		
 		this.parent = parent;
 
-		key = new SimpleLL<>();  
+		key = new String[2*t-1];  
 
-		child = new SimpleLL<>(); 
+		child = new BTreeNode[2*t]; 
 
 		leaf = true; 
+		
 		count = 0; 
 	}
 
 
 
-	public T getValue(int index)
+	public String getValue(int index)
 	{
-		return (T) key.getDatai(index);
+		return key[index];
 	}
 
 
-	@SuppressWarnings("unchecked")
 	public BTreeNode<T> getChild(int index)
 	{
-		return (BTreeNode<T>) child.getDatai(index);
+		return child[index];
 	}
 }

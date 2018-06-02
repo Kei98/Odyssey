@@ -7,9 +7,10 @@ public class BTree<T extends Comparable<T>> {
 		BTreeNode<T> root;  
 
 
+		@SuppressWarnings("static-access")
 		public BTree(int order)
 		{
-			BTree.order = order;
+			this.order = order;
 
 			root = new BTreeNode<>(order, null);
 
@@ -21,17 +22,18 @@ public class BTree<T extends Comparable<T>> {
 		 */
 
 
+		@SuppressWarnings("unchecked")
 		public BTreeNode<T> search(BTreeNode<T> root, T key)
 		{
 			int i = 0;
 
-			while(i < root.count && key.compareTo(root.key.getDatai(i)) > 0) 
+			while(i < root.count && key.compareTo((T) root.key[i]) > 0) 
 	                    							  
 					                    			  			{
 				i++;
 			}
 
-			if(i <= root.count && key.equals(root.key.getDatai(i)))
+			if(i <= root.count && key.equals(root.key[i]))
 			{
 
 
@@ -69,7 +71,7 @@ public class BTree<T extends Comparable<T>> {
 
 			for(int j = 0; j < order - 1; j++)
 			{
-				z.key.setDatai(j, y.key.getDatai(j+1)); 
+				z.key[j] = y.key[j+1]; 
 
 			}
 			// si no es una hoja, se reasignan los nodos hijos
@@ -77,8 +79,9 @@ public class BTree<T extends Comparable<T>> {
 			{
 				for(int k = 0; k < order; k++)
 				{
-					z.child.setDatai(k, y.child.getDatai(k + order)); 
+					z.child[k] = y.child[k + order];
 				}
+		
 			}
 			// nueva medida de y
 			y.count = order - 1; 
@@ -86,24 +89,24 @@ public class BTree<T extends Comparable<T>> {
 			for(int j = x.count ; j> i ; j--)
 			{				 
 
-				x.child.setDatai(j+1, x.child.getDatai(j));  
+				x.child[j+1] = x.child[j];  
 			}
-			x.child.setDatai(i+1, z);  
+			x.child[i+1] = z;  
 			
 			for(int j = x.count; j> i; j--)
 			{
 				// se intercambian valores
-				x.key.setDatai(j+1, x.key.getDatai(j)); 
+				x.key[j+1] =  x.key[j]; 
 			}
 			// se pone el valor en la raíz
-			x.key.setDatai(i, y.key.getDatai(order-1)); 
+			x.key[i] = y.key[order-1]; 
 			// se borra el valor de donde se copió
-			y.key.setDatai(order -1, (T) null); 
+			y.key[order -1] = null; 
 			
 			for(int j = 0; j < order - 1; j++)
 			{
 				// se borran los valores anteriores
-				y.key.setDatai(j + order, (T) null); 
+				y.key[j + order] =  null; 
 			}
 
 
@@ -120,22 +123,24 @@ public class BTree<T extends Comparable<T>> {
 //			
 //			
 //		}
+		@SuppressWarnings("unchecked")
 		private void nonfullInsert(BTreeNode<T> x, T key)
 		{
 			int i = x.count; 
+			
 
 			if(x.leaf)
 			{
 				// se busca el lugar donde colocar el valor
-				while(i >= 1 && key.compareTo(x.key.getDatai(i-1)) < 0)
+				while(i >= 1 && key.compareTo((T) x.key[i-1]) < 0)
 				{
 					// se cambian los valores para hacer espacio
-					x.key.setDatai(i, x.key.getDatai(i-1)); 
+					x.key[i] = x.key[i-1]; 
 
 					i--;
 				}
 				// se asigna el valor al nodo
-				x.key.setDatai(i, key); 
+				x.key[i] = (String) key; 
 				x.count ++; 
 			}
 
@@ -143,31 +148,40 @@ public class BTree<T extends Comparable<T>> {
 			else
 			{
 				int j = 0;
-				while(j < x.count  && key.compareTo(x.key.getDatai(j)) > 0) 
+				while(j < x.count  && key.compareTo((T) x.key[j]) > 0) 
 				{			             
 					j++;
 				}
 				
-				BTreeNode<T> temp = (BTreeNode<T>) x.child.getDataiN(j);
-				if(temp.count == order*2 - 1)
+				if(x.child[j].count == order*2 - 1)
 				{
-					split(x,j,(BTreeNode<T>) x.child.getDataiN(j)); 
+					split(x, j, x.child[j]); 
 
-					if(key.compareTo(x.key.getDatai(j)) > 0)
+					if(key.compareTo((T) x.key[j]) > 0)
 					{
 						j++;
 					}
 				}
 
-				nonfullInsert((BTreeNode<T>) x.child.getDataiN(j) ,key);
+				nonfullInsert(x.child[j] ,key);
 			}
 		}
-		public void insert(T key) {
-			insert(this, key);
-		}
-		private void insert(BTree<T> t, T key)
+		
+//@SuppressWarnings("null")
+//		public void insert(T key) {
+//			insert(this, key);
+//		}
+		
+		public void insert(BTree<T> t, T key)
 		{
+			
 			BTreeNode<T> r = t.root;
+//			if(r.count < 2*order -1) {
+//				r.key.add(key);
+//				r.count ++;
+//			}
+//			
+			
 			if(r.count == 2*order - 1)
 			{
 				BTreeNode<T> s = new BTreeNode<T>(order,null);
@@ -175,7 +189,7 @@ public class BTree<T extends Comparable<T>> {
 				t.root = s;   	
 				s.leaf = false;
 				s.count = 0;   
-				s.child.setDatai(0, r); 
+				s.child[0] = r; 
 				split(s,0,r);
 
 				nonfullInsert(s, key); 
@@ -234,6 +248,7 @@ public class BTree<T extends Comparable<T>> {
 			deleteKey(this, key);
 		}
 		
+		@SuppressWarnings("unchecked")
 		private void deleteKey(BTree<T> t, T key)
 		{
 
@@ -243,13 +258,13 @@ public class BTree<T extends Comparable<T>> {
 			{
 				int i = 0;
 
-				while( key.compareTo(temp.getValue(i)) > 0)
+				while( key.compareTo((T) temp.getValue(i)) > 0)
 				{
 					i++;
 				}
 				for(int j = i; j < 2*order - 2; j++)
 				{
-					temp.key.setDatai(j, temp.getValue(j+1)); 
+					temp.key[j] = temp.getValue(j+1); 
 				}
 				temp.count --;
 

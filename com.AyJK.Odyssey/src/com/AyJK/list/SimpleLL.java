@@ -19,6 +19,8 @@ public class SimpleLL<T> {
     private int size2;
     private int count = 0;
 
+    
+
     /**
      * Constructor de la clase.
      */
@@ -71,6 +73,16 @@ public class SimpleLL<T> {
     		}
     	}
     	return true;
+    }
+    
+	public static void main(String[] args) {
+    	SimpleLL<String> list = new SimpleLL<String>(4);
+    	list.add("t");
+    	list.add("e");
+    	list.add("q");
+    	list.add("m");
+    	list.add("atar");
+    	list.show();
     }
 
     /**
@@ -150,16 +162,16 @@ public class SimpleLL<T> {
 
     }
     
-    public BTreeNode<T> getDataiN(int index) {
-    	Node<T> temp = this.getHead();
-    	while (index != 0) {
-    	    temp = temp.getNext();
-    	    index--;
-    	}
-    	return ((Node<T>) temp).getNode();
-
-		
-	}
+//    public BTreeNode<T> getDataiN(int index) {
+//    	Node<T> temp = this.getHead();
+//    	while (index != 0) {
+//    	    temp = temp.getNext();
+//    	    index--;
+//    	}
+//    	return ((Node<T>) temp).getNode();
+//
+//		
+//	}
 
     /**
      * Método para insertar un valor en la posición indicada.
@@ -172,10 +184,18 @@ public class SimpleLL<T> {
     public void setDatai(int index, T value) {
 	Node<T> temp = this.getHead();
 	while (index != 0) {
-	    temp = temp.getNext();
-	    index--;
+		if(temp != null) {
+		    temp = temp.getNext();
+		    index--;
+		}else {
+			System.out.println("No está llegando");
+		}
 	}
-	temp.setData(value);
+	if(temp.getPrevious() != null || temp.getNext() != null && temp != this.getHead()) {
+		temp.setData(value);
+	}
+	
+	
     }
     
     public void setDatai(int index, BTreeNode<T> value) {
@@ -186,15 +206,15 @@ public class SimpleLL<T> {
     	}
     	temp.setNode(value);
         }
-    
-    public Node<T> getDataa(int index) {
-    	Node<T> temp = this.getHead();
-    	while (index != 0) {
-    	    temp = temp.getNext();
-    	    index--;
-    	}
-    	return temp.getList();
-        }
+//    
+//    public Node<T> getDataa(int index) {
+//    	Node<T> temp = this.getHead();
+//    	while (index != 1) {
+//    	    temp = temp.getNext();
+//    	    index--;
+//    	}
+//    	return temp.getList();
+//        }
 
     /**
      * Método para limpiar la lista.
