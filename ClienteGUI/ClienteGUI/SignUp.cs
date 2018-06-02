@@ -16,6 +16,9 @@ namespace ClienteGUI
 {
     public partial class SignUp : Form
     {
+        /**
+         * Método que inicializa la clase.
+         * */
         public SignUp()
         {
             InitializeComponent();
@@ -26,11 +29,17 @@ namespace ClienteGUI
 
         }
 
+        /**
+         * Método que se encarga de cerrar la aplicación al clickar sobre el botón de apagado.
+         * */
         private void bunifuImageButton1_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
+        /**
+         * Método que se encarga de transferir de ventana al usuario.
+         * */
         private void logInButton_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -38,8 +47,9 @@ namespace ClienteGUI
             logIn.Show();
         }
 
-        
-
+        /**
+         * Método que se encarga de validar que los datos ingresados por el usuario cumplan las normar de la aplicación.
+         * */
         public Boolean Validate()
         {
             Boolean valid = true;
@@ -64,10 +74,12 @@ namespace ClienteGUI
             {
                 valid = false;
             }
-
             return valid;
         }
 
+        /**
+         * Variables de la clase.
+         * */
         String fullName;
         String userName;
         int userAge;
@@ -76,6 +88,9 @@ namespace ClienteGUI
         String userPasswordRe;
         String userCryptedPassword;
 
+        /**
+         * Método que se encarga de encriptar la clave que ingresa el usuario al registrarse.
+         * */
         private String GetMD5(string password)
         {
             MD5CryptoServiceProvider userMD5Password = new MD5CryptoServiceProvider();
@@ -89,28 +104,43 @@ namespace ClienteGUI
             return str.ToString();
         }
 
+        /**
+         * Método que se encarga de obtener el nombre completo que ingresa el cliente al intentar registrarse.
+         * */
         private void nameInfo_OnValueChanged(object sender, EventArgs e)
         {
             fullName = nameInfo.Text;
         }
 
+        /**
+         * Método que se encarga de obtener el nombre de usuario que ingresa el cliente al intentar registrarse.
+         * */
         private void userNameInfo_OnValueChanged(object sender, EventArgs e)
         {
             userName = userNameInfo.Text;
         }
 
+        /**
+         * Método que se encarga de obtener la edad que ingresa el cliente al intentar registrarse.
+         * */
         private void userEmailInfo_OnValueChanged(object sender, EventArgs e)
         {
             userAge = Int32.Parse(userEmailInfo.Text);
             userAgeString = userEmailInfo.Text;
         }
 
+        /**
+         * Método que se encarga de obtener el password que ingresa el cliente al intentar registrarse.
+         * */
         private void userPasswordInfo_OnValueChanged(object sender, EventArgs e)
         {
             userPassword = userPasswordInfo.Text;
             userCryptedPassword = GetMD5(userPassword);
         }
 
+        /**
+         * Método que se encarga de obtener el password que ingresa el cliente al intentar registrarse.
+         * */
         private void userPasswordInfoEvaluation_OnValueChanged(object sender, EventArgs e)
         {
             userPasswordRe = userPasswordInfoEvaluation.Text;
@@ -121,6 +151,11 @@ namespace ClienteGUI
 
         }
 
+        /**
+         * Método que se encarga de validar el registro de la cuenta, además de guardar los datos de registro en un XMl 
+         * que posteriormente será enviado al server. Si el registro se completa correctamente el usuario el redirigido
+         * a la ventana de Log In para que proceda a iniciar sesión.
+         * */
         private void signUpButton_Click(object sender, EventArgs e)
         {
             if(!Validate())
@@ -129,7 +164,6 @@ namespace ClienteGUI
             }
             else
             {
-
                 XmlDocument usersInfo = new XmlDocument();
 
                 XmlDeclaration xmlDeclaration = usersInfo.CreateXmlDeclaration("1.0", "UTF-8", null);
@@ -162,24 +196,8 @@ namespace ClienteGUI
                 element6.AppendChild(text4);
                 element2.AppendChild(element6);
 
-                //element3.AppendChild(text1);
-                //element2.AppendChild(element3);
-
                 usersInfo.Save("C:\\Users\\jonat\\OneDrive\\Jonathan\\Trabajos TEC\\Computadores\\Algoritmos y Estructura de Datos I\\Eclipse-Workspace\\Odyssey\\ClienteGUI\\UsersInfo.xml");
 
-                /**
-                XDocument fullNameInfo = new XDocument(new XElement("UsersFullName", fullName));
-                fullNameInfo.Save("C:\\Users\\jonat\\OneDrive\\Jonathan\\Trabajos TEC\\Computadores\\Algoritmos y Estructura de Datos I\\Eclipse-Workspace\\Odyssey\\ClienteGUI\\usersFullNameInfo.xml");
-
-                XDocument userNameInfo = new XDocument(new XElement("UsersFullName", userName));
-                userNameInfo.Save("C:\\Users\\jonat\\OneDrive\\Jonathan\\Trabajos TEC\\Computadores\\Algoritmos y Estructura de Datos I\\Eclipse-Workspace\\Odyssey\\ClienteGUI\\usersNameInfo.xml");
-
-                XDocument ageInfo = new XDocument(new XElement("UsersFullName", userAge));
-                ageInfo.Save("C:\\Users\\jonat\\OneDrive\\Jonathan\\Trabajos TEC\\Computadores\\Algoritmos y Estructura de Datos I\\Eclipse-Workspace\\Odyssey\\ClienteGUI\\usersAgeInfo.xml");
-
-                XDocument userPasswordInfo = new XDocument(new XElement("UsersFullName", userPassword));
-                userPasswordInfo.Save("C:\\Users\\jonat\\OneDrive\\Jonathan\\Trabajos TEC\\Computadores\\Algoritmos y Estructura de Datos I\\Eclipse-Workspace\\Odyssey\\ClienteGUI\\userPasswordInfo.xml");
-    */
                 this.Hide();
                 LogIn logIn = new LogIn();
 

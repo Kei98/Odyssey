@@ -14,31 +14,25 @@ namespace ClienteGUI
 {
     public partial class LogIn : Form
     {
+        /**
+         * Método que incia la clase.
+         * */
         public LogIn()
         {
             InitializeComponent();
         }
 
+        /**
+         * Método que se encarga de asignar la función de apagado al botón de apagado.
+         * */
         private void bunifuImageButton1_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        public Boolean Validate()
-        {
-            Boolean valid = true;
-
-            if(userNameInfo == null || userPasswordInfo.Length < 4)
-            {
-                valid = false;
-            }
-            else if(userPasswordInfo == null || userPasswordInfo.Length < 6)
-            {
-                valid = false;
-            }
-            return valid;
-        }
-
+        /**
+         * Método que se encarga de encriptar la clave que ingresa el usuario para su comprobación al iniciar sesión.
+         * */
         private String GetOrignalPassword(String passwordMD5)
         {
             MD5CryptoServiceProvider userMD5Password = new MD5CryptoServiceProvider();
@@ -52,6 +46,9 @@ namespace ClienteGUI
             return str.ToString();
         }
 
+        /**
+         * Método que se encarga de abrir la ventana de registro al clickar sobre el botón de registro.
+         * */
         private void signUpButton_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -59,21 +56,34 @@ namespace ClienteGUI
             signUp.Show();
         }
 
+        /**
+         * Variables de la clase.
+         * */
         String userNameInfo;
         String userPasswordInfo;
+        XmlDocument userInfoLoad = new XmlDocument();
 
+        /**
+         * Método que se encarga de obtener el nombre de usuario que ingresa el cliente al intentar iniciar sesión.
+         * */
         private void userName_OnValueChanged(object sender, EventArgs e)
         {
             userNameInfo = userName.Text;
         }
 
+        /**
+         * Método que se encarga de obtener el password que ingresa el cliente al intentar iniciar sesión.
+         * */
         private void userPassword_OnValueChanged(object sender, EventArgs e)
         {
             userPasswordInfo = userPassword.Text;
         }
 
-        XmlDocument userInfoLoad = new XmlDocument();
 
+        
+        /**
+         * Método que se encarga de verificar si el usuario se encuentra registrado y posteriormente inicia sesión
+         * */
         private void logInButton_Click(object sender, EventArgs e)
         {
             userInfoLoad.Load(@"C:\\Users\jonat\\OneDrive\\Jonathan\\Trabajos TEC\\Computadores\\Algoritmos y Estructura de Datos I\\Eclipse-Workspace\\Odyssey\\ClienteGUI\\UsersInfo.xml");
@@ -84,8 +94,8 @@ namespace ClienteGUI
 
             if ((userNameInfo != userNameLoad.Value) || (userPasswordEncrypted != userPasswordLoad.Value))
             {
-                //MessageBox.Show("Por favor ingrese sus datos correctamente");
-                MessageBox.Show(userPasswordDecrypted);
+                MessageBox.Show("Por favor ingrese sus datos correctamente");
+                //MessageBox.Show(userPasswordDecrypted);
             }
             else
             {

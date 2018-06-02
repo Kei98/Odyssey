@@ -19,21 +19,16 @@ namespace ClienteGUI
         
         static void Main()
         {
-
+            /**
+             * Se inicia un Thread de comunicación con el server en background y se establece la GUI como Thread principal.
+             * */
             System.Threading.Thread server = new System.Threading.Thread(new System.Threading.ThreadStart(StartClient));
-
             server.Start();
-
             server.IsBackground = true;
-
             //StartClient();
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LogIn());
-
-
-
             //return 0;
         }
 
@@ -50,32 +45,22 @@ namespace ClienteGUI
                 IPAddress ipAddress = ipHostInfo.AddressList[0];
                 IPEndPoint remoteEP = new IPEndPoint(ipAddress, 12000);
                 // Create a TCP/IP  socket.  
-                Socket sender = new Socket(ipAddress.AddressFamily,
-                    SocketType.Stream, ProtocolType.Tcp);
-
+                Socket sender = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
                 // Connect the socket to the remote endpoint. Catch any errors.  
                 try
                 {
                     sender.Connect(remoteEP);
-
-                    Console.WriteLine("Socket connected to {0}",
-                        sender.RemoteEndPoint.ToString());
-
+                    Console.WriteLine("Socket connected to {0}", sender.RemoteEndPoint.ToString());
                     // Encode the data string into a byte array.  
                     byte[] msg = Encoding.ASCII.GetBytes("This is a test<EOF>");
-
                     // Send the data through the socket.  
                     int bytesSent = sender.Send(msg);
-
                     // Receive the response from the remote device.  
                     int bytesRec = sender.Receive(bytes);
-                    Console.WriteLine("Echoed test = {0}",
-                        Encoding.ASCII.GetString(bytes, 0, bytesRec));
-
+                    Console.WriteLine("Echoed test = {0}", Encoding.ASCII.GetString(bytes, 0, bytesRec));
                     // Release the socket.  
                     sender.Shutdown(SocketShutdown.Both);
                     sender.Close();
-
                 }
                 catch (ArgumentNullException ane)
                 {
@@ -89,7 +74,6 @@ namespace ClienteGUI
                 {
                     Console.WriteLine("Unexpected exception : {0}", e.ToString());
                 }
-
             }
             catch (Exception e)
             {
