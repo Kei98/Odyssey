@@ -7,6 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using System.Xml.Linq;
+using System.Xml;
+using System.Security.Cryptography;
 
 namespace ClienteGUI
 {
@@ -67,14 +71,23 @@ namespace ClienteGUI
         String fullName;
         String userName;
         int userAge;
+        String userAgeString;
         String userPassword;
         String userPasswordRe;
+        String userCryptedPassword;
 
-        private SimpleLL<String> fullNames = new SimpleLL<String>();
-        private SimpleLL<String> usersNames = new SimpleLL<String>();
-        private SimpleLL<int> usersAges = new SimpleLL<int>();
-        private SimpleLL<String> usersPasswords = new SimpleLL<String>();
-
+        private String GetMD5(string password)
+        {
+            MD5CryptoServiceProvider userMD5Password = new MD5CryptoServiceProvider();
+            userMD5Password.ComputeHash(ASCIIEncoding.ASCII.GetBytes(userPassword));
+            byte[] result = userMD5Password.Hash;
+            StringBuilder str = new StringBuilder();
+            for(int i = 0; i < result.Length; i++)
+            {
+                str.Append(result[i].ToString("x2"));
+            }
+            return str.ToString();
+        }
 
         private void nameInfo_OnValueChanged(object sender, EventArgs e)
         {
@@ -89,11 +102,13 @@ namespace ClienteGUI
         private void userEmailInfo_OnValueChanged(object sender, EventArgs e)
         {
             userAge = Int32.Parse(userEmailInfo.Text);
+            userAgeString = userEmailInfo.Text;
         }
 
         private void userPasswordInfo_OnValueChanged(object sender, EventArgs e)
         {
             userPassword = userPasswordInfo.Text;
+            userCryptedPassword = GetMD5(userPassword);
         }
 
         private void userPasswordInfoEvaluation_OnValueChanged(object sender, EventArgs e)
@@ -114,11 +129,57 @@ namespace ClienteGUI
             }
             else
             {
-                fullNames.Add(userName);
-                usersAges.Add(userAge);
-                usersNames.Add(userName);
-                usersPasswords.Add(userPassword);
 
+                XmlDocument usersInfo = new XmlDocument();
+
+                XmlDeclaration xmlDeclaration = usersInfo.CreateXmlDeclaration("1.0", "UTF-8", null);
+                XmlElement root = usersInfo.DocumentElement;
+                usersInfo.InsertBefore(xmlDeclaration, root);
+
+                XmlElement element1 = usersInfo.CreateElement(string.Empty, "UserInfo", string.Empty);
+                usersInfo.AppendChild(element1);
+
+                XmlElement element2 = usersInfo.CreateElement(string.Empty, "Details", string.Empty);
+                element1.AppendChild(element2);
+
+                XmlElement element3 = usersInfo.CreateElement(string.Empty, "UserFullName", string.Empty);
+                XmlText text1 = usersInfo.CreateTextNode(fullName);
+                element3.AppendChild(text1);
+                element2.AppendChild(element3);
+
+                XmlElement element4 = usersInfo.CreateElement(string.Empty, "UserName", string.Empty);
+                XmlText text2 = usersInfo.CreateTextNode(userName);
+                element4.AppendChild(text2);
+                element2.AppendChild(element4);
+               
+                XmlElement element5 = usersInfo.CreateElement(string.Empty, "UserAge", string.Empty);
+                XmlText text3 = usersInfo.CreateTextNode(userAgeString);
+                element5.AppendChild(text3);
+                element2.AppendChild(element5);
+                
+                XmlElement element6 = usersInfo.CreateElement(string.Empty, "UserPassword", string.Empty);
+                XmlText text4 = usersInfo.CreateTextNode(userCryptedPassword);
+                element6.AppendChild(text4);
+                element2.AppendChild(element6);
+
+                //element3.AppendChild(text1);
+                //element2.AppendChild(element3);
+
+                usersInfo.Save("C:\\Users\\jonat\\OneDrive\\Jonathan\\Trabajos TEC\\Computadores\\Algoritmos y Estructura de Datos I\\Eclipse-Workspace\\Odyssey\\ClienteGUI\\UsersInfo.xml");
+
+                /**
+                XDocument fullNameInfo = new XDocument(new XElement("UsersFullName", fullName));
+                fullNameInfo.Save("C:\\Users\\jonat\\OneDrive\\Jonathan\\Trabajos TEC\\Computadores\\Algoritmos y Estructura de Datos I\\Eclipse-Workspace\\Odyssey\\ClienteGUI\\usersFullNameInfo.xml");
+
+                XDocument userNameInfo = new XDocument(new XElement("UsersFullName", userName));
+                userNameInfo.Save("C:\\Users\\jonat\\OneDrive\\Jonathan\\Trabajos TEC\\Computadores\\Algoritmos y Estructura de Datos I\\Eclipse-Workspace\\Odyssey\\ClienteGUI\\usersNameInfo.xml");
+
+                XDocument ageInfo = new XDocument(new XElement("UsersFullName", userAge));
+                ageInfo.Save("C:\\Users\\jonat\\OneDrive\\Jonathan\\Trabajos TEC\\Computadores\\Algoritmos y Estructura de Datos I\\Eclipse-Workspace\\Odyssey\\ClienteGUI\\usersAgeInfo.xml");
+
+                XDocument userPasswordInfo = new XDocument(new XElement("UsersFullName", userPassword));
+                userPasswordInfo.Save("C:\\Users\\jonat\\OneDrive\\Jonathan\\Trabajos TEC\\Computadores\\Algoritmos y Estructura de Datos I\\Eclipse-Workspace\\Odyssey\\ClienteGUI\\userPasswordInfo.xml");
+    */
                 this.Hide();
                 LogIn logIn = new LogIn();
 

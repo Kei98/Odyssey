@@ -12,10 +12,18 @@ namespace ClienteGUI
         private Node<T> head;
         private int size;
 
+        private SimpleLL<T> nombres = new SimpleLL<T>();
+
+
         public SimpleLL()
         {
             this.head = null;
             this.size = 0;
+        }
+
+        public SimpleLL<T> GetSimpleLL()
+        {
+            return nombres;
         }
 
         public void Add(T data)
@@ -134,7 +142,12 @@ namespace ClienteGUI
                 }
             }
         }
-
+        /**
+        public SimpleLL<T> GetSimpleLL()
+        {
+            return usersInfo;
+        }
+    */
         public void Clear()
         {
             head = null;
@@ -165,5 +178,7 @@ namespace ClienteGUI
         {
             return size;
         }
+
+
     }
 }
