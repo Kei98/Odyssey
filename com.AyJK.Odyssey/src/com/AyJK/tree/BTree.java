@@ -196,7 +196,7 @@ public class BTree<T extends Comparable<T>> {
 
 			if (temp == null) {
 
-				System.out.println("The Key does not exist in this tree");
+				System.out.println("El valor no existe en este árbol");
 			}
 
 			else {
